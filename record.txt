@@ -1,0 +1,63 @@
+•	Run an Ubuntu container in a Bash shell
+           $ docker run -it ubuntu:14.04 /bin/bash
+•	
+o	14.04 有安裝網路工具
+o	eth0 172.17.0.2
+o	default gw is 172.17.0.1
+•	Update files into Ubuntu
+•	
+o	# dpkg --print-architecture
+o	# dpkg --print-foreign-architectures
+o	# dpkg --add-architecture i386
+o	# dpkg --print-foreign-architectures
+o	# apt-get update
+o	# apt-get install tftp tftpd xinetd (有timeout問題沒有解決)
+o	# apt-get install openssh-server (use volume, 應該可以不用了)
+o	# apt-get install build-essential (for make)
+o	# apt-get install dos2unix
+o	# apt-get install ia32-libs --> 換成另外三個 lib32z1(V), lib32ncurses5, lib32bz2-1.0
+o	# apt-get install lib32z1
+o	# apt-get install lib32ncurses5 (?)
+o	# apt-get install lib32ncurses5w --> not found in 16.04
+o	# apt-get install lib32bz2-1.0 (X) --> not found in 16.04
+o	# apt-get install zlib1g-dev (X) --> not found in 16.04
+o	# apt-get install gcc-4.7-multilib (X)
+o	# apt-get install vim
+o	# apt-get install bison
+o	# apt-get install flex
+o	# apt-get install gawk
+o	# apt-get install libstdc++5:i386
+o	# apt-get install libstdc++6:i386
+o	# apt-get install texinfo
+o	# apt-get install tcl
+o	# apt-get install git
+o	# apt-get install gperf
+o	# useradd bba
+o	# passwd bba (bba/bba)
+o	# mkdir /home/bba
+o	# mkdir /home/bba/git-src (mount point for a volume)
+o	# mkdir /home/bba/share (mount point for share folder)
+o	# chmod -R 777 /home/bba
+o	# chown -R bba /home/bba
+o	# /etc/init.d/ssh start
+o	@host# cd /c/Users/Eric Chu/Google.../BBA code
+o	@host# scp mips-linux-uclibc-4.3.6-v2.tgz bba@172.17.0.2:/home/bba
+o	@host# scp automake-1.6.3.tar.gz bba@172.17.0.2:/home/bba
+o	# cd /home/bba
+o	# tar xvfz mips-linux-uclibc-4.3.6-v2.tgz
+o	# mkdir /opt/trendchip
+o	# mv mips-linux-uclibc-4.3.6-v2 /opt/trendchip
+o	# tar xvfz automake-1.6.3.tar.gz
+o	# cd automake-1.6.3
+o	# ./configure
+o	# make install
+o	# cd ..
+o	# rm mips-linux-uclibc-4.3.6-v2.tgz automake-1.6.3.tar.gz
+o	# rm -r automake-1.6.3
+o	# ln -s /usr/bin/perl /usr/local/bin/perl
+o	# rm /bin/sh
+o	# ln -s /bin/bash /bin/sh
+o	
+	apt-get install samba
+	pdbedit -a bba
+	edit /etc/samba/smb.conf
