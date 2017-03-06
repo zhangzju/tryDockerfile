@@ -20,8 +20,10 @@ RUN dpkg --add-architecture i386
 #安装依赖
 RUN cp sources.list /etc/apt/sources.list \
     &&  apt-get update \
-    &&  buildDeps='tftp tftpd xinetd build-essential dos2unix lib32z1 zlib1g-dev gcc-4.7-multilib vim bison flex gawk libstdc++5:i386 libstdc++6:i386 texinfo tcl git gperf automake' \
+    &&  buildDeps='make tftp tftpd xinetd build-essential dos2unix lib32z1 zlib1g-dev gcc-4.7-multilib vim bison flex gawk libstdc++5:i386 libstdc++6:i386 texinfo tcl git gperf automake' \
     &&  apt-get install -y $buildDeps \
     &&  mkdir -p /opt/bba/
 #链接perl 
 RUN ln -s /usr/bin/perl /usr/local/bin/perl
+#添加初始挂载点
+VOLUME /opt/bba
