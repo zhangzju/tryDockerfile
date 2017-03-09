@@ -1,0 +1,20 @@
+#Dockerfile
+FROM ubuntu:16.04
+#指定系统
+MAINTAINER zhangzju <zhangwei_w8284@tp-link.com.cn>
+#版本信息
+LABEL version="1.0.1"
+#切换架构
+RUN dpkg --add-architecture i386 
+#添加源
+RUN echo "deb http://archive.ubuntu.com/ubuntu/ raring main universe" >> /etc/apt/sources.list
+#安装依赖
+RUN apt-get update \
+    &&  buildDeps='gcc g++ make tftp tftpd xinetd build-essential dos2unix lib32z1 zlib1g-dev gcc-4.7-multilib vim bison flex gawk libstdc++5:i386 libstdc++6:i386 texinfo tcl git gperf automake' \
+    &&  apt-get install -y $buildDeps \
+    &&  rm -rf /var/lib/apt/lists/* \
+    &&  mkdir -p /opt/bba/
+#链接perl 
+RUN ln -s /usr/bin/perl /usr/local/bin/perl
+#添加初始挂载点
+VOLUME /opt/bba
