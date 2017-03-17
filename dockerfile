@@ -23,6 +23,7 @@ RUN cp sources.list /etc/apt/sources.list \
     &&  buildDeps='gcc g++ make tftp tftpd xinetd build-essential dos2unix lib32z1 zlib1g-dev gcc-4.7-multilib vim bison flex gawk libstdc++5:i386 libstdc++6:i386 texinfo tcl git gperf automake' \
     &&  apt-get install -y $buildDeps \
     &&  mkdir -p /opt/bba/
+#添加mips toolchain，注意tar文件一定要放在dockerfile的同意路径下，名称要相同
 #链接perl 
 RUN ln -s /usr/bin/perl /usr/local/bin/perl
 #添加初始挂载点
