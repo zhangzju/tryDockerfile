@@ -24,6 +24,9 @@ RUN cp sources.list /etc/apt/sources.list \
     &&  apt-get install -y $buildDeps \
     &&  mkdir -p /opt/bba/
 #添加mips toolchain，注意tar文件一定要放在dockerfile的同意路径下，名称要相同
+ADD mips-linux-uclibc-4.3.6-v2.tgz /opt/bba
+RUN mkdir /opt/trendchip \
+    && mv mips-linux-uclibc-4.3.6-v2 /opt/trendchip
 #链接perl 
 RUN ln -s /usr/bin/perl /usr/local/bin/perl
 #添加初始挂载点
