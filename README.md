@@ -1,2 +1,2 @@
 # tryDockerfile
-记录如何去根据一段操作来写dockerfile.
+如何使用dockerfile来搭建嵌入式编译环境
