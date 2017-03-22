@@ -17,15 +17,20 @@ RUN mv /etc/apt/sources.list /etc/apt/sources.list.bak \
     && echo "deb http://rdsource.tp-link.net/ubuntu xenial-security multiverse" >> sources.list
 #切换架构
 RUN dpkg --add-architecture i386 
+#设置环境变量
+ENV TERM linux
 #安装依赖
 RUN cp sources.list /etc/apt/sources.list \
     &&  apt-get update \
     &&  buildDeps='gcc g++ make tftp tftpd xinetd build-essential dos2unix lib32z1 zlib1g-dev gcc-4.7-multilib vim bison flex gawk libstdc++5:i386 libstdc++6:i386 texinfo tcl git gperf automake' \
     &&  apt-get install -y $buildDeps \
     &&  mkdir -p /opt/bba/
+#指定工作路径
+WORKDIR /opt/bba
 #添加mips toolchain，注意tar文件一定要放在dockerfile的同意路径下，名称要相同
-ADD mips-linux-uclibc-4.3.6-v2.tgz /opt/bba
+COPY ./mips-linux-uclibc-4.3.6-v2.tgz /opt/bba
 RUN mkdir /opt/trendchip \
+	&& tar xvfz mips-linux-uclibc-4.3.6-v2.tgz \
     && mv mips-linux-uclibc-4.3.6-v2 /opt/trendchip
 #链接perl 
 RUN ln -s /usr/bin/perl /usr/local/bin/perl
