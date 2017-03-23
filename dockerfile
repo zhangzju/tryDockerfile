@@ -1,20 +1,20 @@
 #Dockerfile
-FROM ubuntu:16.04
+FROM ubuntu:14.04
 #指定系统
 MAINTAINER zhangzju <zhangwei_w8284@tp-link.com.cn>
 #切换镜像源
 RUN mv /etc/apt/sources.list /etc/apt/sources.list.bak \
     && touch sources.list \
-    && echo "deb http://rdsource.tp-link.net/ubuntu/ xenial main restricted" >> sources.list \
-    && echo "deb http://rdsource.tp-link.net/ubuntu/ xenial-updates main restricted" >> sources.list  \
-    && echo "deb http://rdsource.tp-link.net/ubuntu/ xenial universe" >> sources.list  \
-    && echo "deb http://rdsource.tp-link.net/ubuntu/ xenial-updates universe" >> sources.list \
-    && echo "deb http://rdsource.tp-link.net/ubuntu/ xenial multiverse" >> sources.list \
-    && echo "deb http://rdsource.tp-link.net/ubuntu/ xenial-updates multiverse" >> sources.list \
-    && echo "deb http://rdsource.tp-link.net/ubuntu/ xenial-backports main restricted universe multiverse" >> sources.list \
-    && echo "deb http://rdsource.tp-link.net/ubuntu xenial-security main restricted" >> sources.list \
-    && echo "deb http://rdsource.tp-link.net/ubuntu xenial-security universe" >> sources.list \
-    && echo "deb http://rdsource.tp-link.net/ubuntu xenial-security multiverse" >> sources.list
+    && echo "deb http://rdsource.tp-link.net/ubuntu/ trusty main restricted" >> sources.list \
+    && echo "deb http://rdsource.tp-link.net/ubuntu/ trusty-updates main restricted" >> sources.list  \
+    && echo "deb http://rdsource.tp-link.net/ubuntu/ trusty universe" >> sources.list  \
+    && echo "deb http://rdsource.tp-link.net/ubuntu/ trusty-updates universe" >> sources.list \
+    && echo "deb http://rdsource.tp-link.net/ubuntu/ trusty multiverse" >> sources.list \
+    && echo "deb http://rdsource.tp-link.net/ubuntu/ trusty-updates multiverse" >> sources.list \
+    && echo "deb http://rdsource.tp-link.net/ubuntu/ trusty-backports main restricted universe multiverse" >> sources.list \
+    && echo "deb http://rdsource.tp-link.net/ubuntu trusty-security main restricted" >> sources.list \
+    && echo "deb http://rdsource.tp-link.net/ubuntu trusty-security universe" >> sources.list \
+    && echo "deb http://rdsource.tp-link.net/ubuntu trusty-security multiverse" >> sources.list
 #切换架构
 RUN dpkg --add-architecture i386 
 #设置环境变量
